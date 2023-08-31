@@ -1,4 +1,3 @@
-const abc = 'hello';
-export {
-    abc
+export function shopifyMethod() {
+    return 'hello world, shopify';
 }

@@ -1,4 +1,7 @@
-// import * as dotenv from "dotenv";
-// dotenv.config();
+const PORT = process.env.PORT;
+const PLATFORM = 'shopify';
 
-export const PORT = process.env.PORT;
+export {
+    PORT,
+    PLATFORM,
+}

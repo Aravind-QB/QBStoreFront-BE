@@ -1,11 +1,24 @@
 import * as dotenv from "dotenv";
 
 dotenv.config();
+let variables;
 
-const envs = process.env.PLATFORM === 'magento' ?
-    require('./magento') :
-    require('./shopify');
+switch (process.env.PLATFORM) {
 
+    case 'magento':
+        variables = require('./magento');
+        break;
 
-const PORT = envs.PORT;
-export {PORT}
+    case 'shopify':
+        variables = require('./shopify');
+        break;
+
+    default:
+        variables = require('./magento');
+        break;
+}
+
+const PORT = variables?.PORT;
+const PLATFORM = variables?.PLATFORM;
+
+export { PORT, PLATFORM }

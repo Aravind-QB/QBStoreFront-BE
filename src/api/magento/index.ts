@@ -1,4 +1,3 @@
-const abc = 'hi';
-export {
-    abc
+export function magentoMethod() {
+    return 'hello world, magento';
 }
