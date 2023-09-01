@@ -1,3 +1,3 @@
-export function magentoMethod() {
+export function defaultMethod() {
     return 'hello world, magento';
 }

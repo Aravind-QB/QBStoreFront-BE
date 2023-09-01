@@ -1,3 +1,3 @@
-export function shopifyMethod() {
+export function defaultMethod() {
     return 'hello world, shopify';
 }

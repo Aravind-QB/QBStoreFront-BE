@@ -1,6 +1,6 @@
 import express from 'express';
-import { V1DefaultRoutes } from './src/api/bff/defaultRouter';
-import { PORT } from './src/config';
+import { V1DefaultRoutes } from './src/bff/api/defaultRouter';
+import { PORT } from './src/bff/config';
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var createError = require('http-errors');
