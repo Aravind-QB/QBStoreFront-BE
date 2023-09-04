@@ -4,10 +4,8 @@ import { authenticateToken ,generateAccessToken } from '../middleware';
 const apiMethods = require(`../../${PLATFORM}/api`);
 const router = Router();
 const jwt = require('jsonwebtoken');
-
 const dotenv = require('dotenv')
 dotenv.config();
-
 process.env.TOKEN_SECRET;
   
 router.post('/api/login', (req, res) => {
@@ -18,8 +16,6 @@ router.post('/api/login', (req, res) => {
 });
 
 export const V1DefaultRoutes = () => {
-
-
     router.get(
         '/default', authenticateToken, (req, res) => {
             const response = apiMethods.defaultMethod();
@@ -27,6 +23,10 @@ export const V1DefaultRoutes = () => {
         }
     );
 
-
+    router.post('/default/:id', (req, res) => {
+        const response = apiMethods.defaultMethod(req);
+            res.send(response);
+    }
+    );
     return router;
 };
