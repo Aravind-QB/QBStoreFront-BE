@@ -8,9 +8,7 @@ export const V1DefaultRoutes = () => {
 
     router.post('/api/login', (req, res) => {
         const token = generateAccessToken({ username: req.body.username });
-        console.log(token)
         res.json(token);
-
     });
 
     router.get(
