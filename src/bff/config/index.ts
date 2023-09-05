@@ -7,11 +7,11 @@ const variables = require(`../../${platform}/config`);
 
 const PORT = variables?.PORT;
 const PLATFORM = variables?.PLATFORM;
-const cookieConfig = {
+const COOKIECONFIG = {
     options: {
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     },
   };
 
-export { PORT, PLATFORM, cookieConfig }
+export { PORT, PLATFORM, COOKIECONFIG }
