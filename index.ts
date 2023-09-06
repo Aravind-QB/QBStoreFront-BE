@@ -1,9 +1,11 @@
 import express from 'express';
 import { V1DefaultRoutes } from './src/bff/api/defaultRouter';
+import { ProductRoutes } from './src/bff/api/productRouter';
 import { PORT } from './src/bff/config';
+import { authenticateToken } from './src/bff/middleware';
+import {NotFound} from 'http-errors';
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var createError = require('http-errors');
 
 const app = express();
 
@@ -13,10 +15,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/v1', V1DefaultRoutes());
+app.use('/v1/api/products', authenticateToken, ProductRoutes());
 
-// catch 404 and forward to error handler
+// catch 404
 app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
-    next(createError(404));
+    res.status(404).json({ success: false, ...NotFound(), data: {} });
 });
 
 // error handler
@@ -24,11 +27,10 @@ app.use(function (err: Error, req: express.Request, res: express.Response, next:
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-    res.status(500).json(err.message);
+    res.status(500).json({ success: false, message: err.message, data: {} });
 });
 
-
 app.listen(PORT, () => {
-        console.log("Server is Successfully Running, and App is listening on port " + PORT)
-    }
+    console.log("Server is Successfully Running, and App is listening on port " + PORT)
+}
 );
