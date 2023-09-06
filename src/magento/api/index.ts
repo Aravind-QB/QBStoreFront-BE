@@ -1,4 +1,5 @@
 import express from 'express';
+import { GET_ALL_PRODUCTS } from '../../bff/const';
 import { getNestedObject } from '../../utils/getNestedObject';
 
 export function defaultMethod(req: express.Request) {
@@ -7,4 +8,12 @@ export function defaultMethod(req: express.Request) {
     console.log(name, city);
 
     return 'hello world, magento';
+}
+
+export function getAllProducts() {
+    return GET_ALL_PRODUCTS;
+}
+
+export function getProductsById(id: string) {
+    return GET_ALL_PRODUCTS.find(x => x.id == id);
 }
