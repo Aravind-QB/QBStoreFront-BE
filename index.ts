@@ -3,7 +3,8 @@ import { V1DefaultRoutes } from './src/bff/api/defaultRouter';
 import { ProductRoutes } from './src/bff/api/productRouter';
 import { PORT } from './src/bff/config';
 import { authenticateToken } from './src/bff/middleware';
-import {NotFound} from 'http-errors';
+import { NotFound } from 'http-errors';
+var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -13,6 +14,21 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+var allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+app.use(cors({
+    origin: function (origin: any, callback: any) {
+        // allow requests with no origin 
+        // (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}));
 
 app.use('/v1', V1DefaultRoutes());
 app.use('/v1/api/products', authenticateToken, ProductRoutes());
