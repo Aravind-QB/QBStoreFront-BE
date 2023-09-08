@@ -8,9 +8,11 @@ const router = Router();
 export const V1DefaultRoutes = () => {
 
     router.post('/api/login', (req, res) => {
-        const token = generateAccessToken({ username: req.body.username });
-        res.cookie(COOKIE_NAME, token, COOKIE_CONFIG.options)
-        res.json();
+        const token = generateAccessToken({ username: req?.body?.username || '' });
+        res.json({'token': token});
+        // const token = generateAccessToken({ username: req.body.username });
+        // res.cookie(COOKIE_NAME, token, COOKIE_CONFIG.options)
+        // res.json();
     });
 
     router.get(

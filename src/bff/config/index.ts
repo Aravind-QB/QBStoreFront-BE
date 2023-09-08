@@ -10,6 +10,7 @@ const PLATFORM = variables?.PLATFORM;
 const COOKIE_CONFIG = {
     options: {
       httpOnly: true,
+      secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     },
   };
