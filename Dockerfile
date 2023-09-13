@@ -1,7 +1,6 @@
 FROM node:18.13.0
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-RUN npm i -g pm2
 COPY package.json /usr/src/app
 COPY  . /usr/src/app/
 RUN npm i
