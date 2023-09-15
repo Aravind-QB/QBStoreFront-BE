@@ -2,7 +2,7 @@ FROM node:18.13.0
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app
-COPY  . /usr/src/app/
+# COPY  . /usr/src/app/
 RUN npm i
 # CMD [ "pm2","start","--interpreter","none",'"ts-node index.ts"' ]
 
