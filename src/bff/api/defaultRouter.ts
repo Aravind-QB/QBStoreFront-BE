@@ -16,9 +16,9 @@ export const V1DefaultRoutes = () => {
     });
 
     router.get(
-        '/api/default', authenticateToken, (req, res) => {
-            const response = apiMethods.defaultMethod();
-            res.send(response);
+        '/api/default', authenticateToken, async (req, res) => {
+            const response = await apiMethods.defaultMethod();
+            res.json(response);
         }
     );
 
