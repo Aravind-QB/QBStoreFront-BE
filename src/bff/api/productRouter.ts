@@ -6,15 +6,17 @@ const router = Router();
 export const ProductRoutes = () => {
 
     router.get(
-        '/getAllProducts', (req, res) => {
-            const response = apiMethods.getAllProducts();
+        '/getAllProducts', async(req, res) => {
+            console.log("Hi");
+            const response = await apiMethods.getAllProducts();
             res.json({ success: true, data: response });
         }
     );
     
     router.get(
-        '/getProductsById/:id', (req, res) => {
-            const response = apiMethods.getProductsById(req.params?.id);
+        '/getProductsById/:id', async(req, res) => {
+            const response = await apiMethods.getProductsById(req.params?.id);
+            console.log("RES2", response)
             res.json({ success: true, data: response });
         }
     );
