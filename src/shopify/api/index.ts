@@ -6,10 +6,10 @@ export async function defaultMethod(req: express.Request) {
 
     const client = new Client({
         host: 'localhost',
-        port: 5434,
+        port: 5432,
         database: 'evershop',
-        user: 'postgres',
-        password: 'pass',
+        user: 'evershopuser',
+        password: 'password',
     })
     await client.connect();
     // const result = await client.query('SELECT* FROM product;')

@@ -18,13 +18,6 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
       return res.sendStatus(403);
     next();
   })
-  // const authCookie = req.cookies[COOKIE_NAME];
-  // if( authCookie == null)
-  //     return res.sendStatus(401);
-  // jwt.verify(authCookie, process.env.TOKEN_SECRET as string, (err: any, user: any) => {
-  // if (err)
-  //     return res.sendStatus(403);
-  //   next();
-  // })
+  
 }
 
