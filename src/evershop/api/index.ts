@@ -27,12 +27,10 @@ export async function defaultMethod(req: express.Request) {
     await client.end()
     return result.rows;
 }
-/*
-SELECT p.product_id, c.short_description, c.name,p.price, c.description, p.image  from product p inner join category_description c ON p.category_id = c.category_description_category_id;
-*/
+
 export async function getAllProducts() {
     const client = createDatabaseConnection();
-    const result = await client.query(`SELECT p.product_id, c.short_description, c.name,p.price, c.description, p.image, pi.qty from product p inner join category_description c  ON p.category_id = c.category_description_category_id inner join product_inventory pi ON p.product_id = pi.product_inventory_product_id;
+    const result = await client.query(`SELECT p.product_id, pd.name as product_name, c.name as category,p.price, p.image, pi.qty from product p inner join category_description c  ON p.category_id = c.category_description_category_id inner join product_inventory pi ON p.product_id = pi.product_inventory_product_id inner join product_description pd ON pd.product_description_product_id = p.product_id;
     `)
     await client.end()
     return result.rows;
@@ -40,10 +38,10 @@ export async function getAllProducts() {
 
 export async function getProductsById(id: string) {
     const client = createDatabaseConnection();
-    const result = await client.query(`SELECT p.product_id, c.short_description, c.name,p.price, c.description, p.image, pi.qty from product p inner join category_description c  ON p.category_id = c.category_description_category_id inner join product_inventory pi ON p.product_id = pi.product_inventory_product_id WHERE p.product_id=$1;
-    `)
+    
+    const result = await client.query(`SELECT p.product_id, pd.name as product_name, c.name as category,p.price, p.image, pi.qty from product p inner join category_description c  ON p.category_id = c.category_description_category_id inner join product_inventory pi ON p.product_id = pi.product_inventory_product_id inner join product_description pd ON pd.product_description_product_id = p.product_id WHERE p.product_id=$1;
+    `,[id])
     console.log("RESULT2", result)
     await client.end()
     return result.rows;
-    //return GET_ALL_PRODUCTS.find(x => x.id == id);
 }
