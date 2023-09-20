@@ -41,7 +41,6 @@ export async function getProductsById(id: string) {
     
     const result = await client.query(`SELECT p.product_id, pd.name as product_name, c.name as category,p.price, p.image, pi.qty from product p inner join category_description c  ON p.category_id = c.category_description_category_id inner join product_inventory pi ON p.product_id = pi.product_inventory_product_id inner join product_description pd ON pd.product_description_product_id = p.product_id WHERE p.product_id=$1;
     `,[id])
-    console.log("RESULT2", result)
     await client.end()
     return result.rows;
 }
