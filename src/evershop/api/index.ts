@@ -1,14 +1,15 @@
 import express from 'express';
 import { GET_ALL_PRODUCTS } from '../../bff/const';
 import { Client } from 'pg';
+import { PG_HOST, PG_PORT, PG_DATABASE, PG_USER, PG_PASSWORD }  from '../constant/index';
 
  function createDatabaseConnection(){
     const client = new Client({
-        host: 'localhost',
-        port: 5432,
-        database: 'evershop',
-        user: 'evershopuser',
-        password: 'password',
+        host : PG_HOST,
+        port : PG_PORT,
+        database : PG_DATABASE,
+        user : PG_USER,
+        password : PG_PASSWORD,
     })
     client.connect();
     return client;
